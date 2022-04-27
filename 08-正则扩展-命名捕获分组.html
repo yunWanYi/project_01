@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+                // 传统做法
+                // 声明一个字符串
+                let str = '<a href="http://www.baidu.com">百度</a>';
+        
+                // 需求：提取 url 和 标签文本
+                // .* 在一起就表示任意字符出现零次或多次
+                const reg = /<a href="(.*)">(.*)<\/a>/;
+        
+                // 执行
+                // 正则对象.exec() 表示检索字符串中的正则表达式的匹配，返回一个数组，其中存放匹配的结果
+                const result = reg.exec(str);
+                console.log(result);
+                // 获取到需要的内容
+                console.log(result[1]);
+                console.log(result[2]);
+                 */
+
+        // es9新增 正则命名分组
+        let str = '<a href="http://www.baidu.com">百度</a>';
+        const reg = /<a href="(?<url>.*)">(?<text>.*)<\/a>/;
+        const result = reg.exec(str);
+        console.log(result);
+        console.log(result.groups);
+        console.log(result.groups.url);
+        console.log(result.groups.text);
+    </script>
+</body>
+
+</html>

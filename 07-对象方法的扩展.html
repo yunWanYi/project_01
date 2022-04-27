@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 声明对象
+        const school = {
+            name: '张三',
+            color: ['pink', 'plum', 'blue'],
+            arr: ['abc', 'def', 'ghi']
+        };
+
+        // console.log(Object.keys(school));       // 获取对象的 全部键名，形成一个数组
+        // console.log(Object.values(school));     // 获取对象的 全部键值，形成一个数组
+        // console.log(Object.entries(school));    // 获取对象的全部 键值对，形成一个数组，每一个元素都是一个数组
+
+        // 对象属性的描述
+        console.log(Object.getOwnPropertyDescriptors(school));
+
+        const obj = Object.create(null, {
+            name: {
+                value: '李四',
+                writable: true,     //是否可写
+                enumerable: true,   //是否可以被枚举
+                configurable: true  //是否可以删除  
+            }
+        })
+        console.log(obj);
+    </script>
+</body>
+
+</html>

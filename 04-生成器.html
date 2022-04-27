@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // yield 相当于代码的分隔符
+        // next() 的返回值是 yield 右边的值
+        function * add() {
+            console.log('start');
+            let x = yield '1';
+
+            console.log(`one：${x}`);
+            let y = yield '2';
+
+            console.log(`two：${y}`);
+            yield '3';
+        }
+        // 创建一个生成器函数
+        let fn = add();
+
+        // next()方法，传入的实参 将 作为上一个yield 的返回值
+        // 也可以理解为 next() 的调用，恢复当前 yield 执行传入的实参!!!
+        // console.log(fn.next());
+        // console.log(fn.next(10));     // 恢复第一个yield 的调用，然后把传入的实参 10 赋值给 x
+        // console.log(fn.next(20));
+        // console.log(fn.next());
+
+        // 使用场景：为不具备Interator接口的对象 提供了遍历操作
+        function * obj(o) {
+            // 获取对象的所有的key保存到数组
+            // Object.keys() 返回一个给定对象的所有可枚举属性的字符串数组
+            const propkeys = Object.keys(o);        // keys() 遍历键名
+            for(const k of propkeys) {
+                // k 是元素键名，propkeys 是一个数组
+                // o[k] 代表 键值 ， k 是键名
+                yield [k, o[k]];
+            }
+        }
+        const o = {
+            name: '张三',
+            age: 18
+        }
+        // console.log(Object.keys(o));
+        o[Symbol.iterator] = obj;
+        console.log(o);
+
+        for(let [key, value] of obj(o)) {
+            console.log(`${key}:${value}`);
+        }
+    </script>
+</body>
+</html>

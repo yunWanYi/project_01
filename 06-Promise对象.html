@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        /* 
+        let pro = new Promise(function (resolved, rejected) {
+            // 执行异步操作
+            let res = {
+                code: 200,
+                data: {
+                    name: '张三',
+                    age: 18
+                },
+                error: '数据获取失败!'
+            }
+            setTimeout(() => {
+                if (res.code === 201) {
+                    resolved(res.data);     // 成功的状态下
+                } else {
+                    rejected(res.error);      // 失败的状态下返回 res.error
+                }
+            }, 1000);
+        });
+
+        console.log(pro);
+
+        // then里面可以写两个函数，第一个是：promise成功状态下执行的，里面val参数就是 resolved 成功返回的值
+        // 第二个函数是：数据获取不到，promise 失败状态下，rejected 失败返回的值
+        pro.then((val) => {
+            console.log(val);
+        }, (err) => {
+            console.log(err);
+        }) */
+
+        // 优化上面代码，上面代码缺点不能传参数！
+        function timeOut (ms) {
+            // 返回一个Promise对象
+            // 第一个参数为 成功状态，第二个 失败状态
+            return new Promise((rsl, rjt) => {
+                setTimeout(() => {
+                    // rsl('Hello Promise success');
+                    rjt('数据获取失败！');
+                }, ms);
+            })
+        }
+        // 返回一个Promise对象，就可以执行then方法了
+        timeOut(2000).then((val) => {
+            console.log(val);
+        }, (err) => {
+            console.log(err);
+        })
+    </script>
+</body>
+
+</html>

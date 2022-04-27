@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // set
+        // 集合：表示无重复值的有序列表
+        // let set = new Set();
+        // // console.log(set);
+        // // 添加元素
+        // set.add(2);
+        // set.add('abc');
+        // set.add([1,3,56]);
+
+        // // 删除元素
+        // set.delete(2);
+
+        // // 校检
+        // console.log(set.has('abc'));
+
+        // console.log(set);
+
+        // 2.将set转换为数组
+        // let set2 = new Set([1,2,3,4,4,5,6,5,7]);
+        // // 用扩展运算符将 set集合 转换为 数组(可以实现对数组去重的效果)
+        // let arr = [...set2];
+        // console.log(arr);
+
+
+        // 二、Map 类型是键值对的有序列表，键和值可以是任意类型
+        let map = new Map();
+        // map.set('键名'，'键值');
+        map.set('name','法外狂徒');
+        map.set('age', 20);
+        map.set('arr', ['a','b','c']);
+        map.set('obj', {name: '张三',age: 18});
+
+        // map 获取值
+        console.log(map.get('age'));
+        console.log(map.get('obj'));
+        console.log(...map.get('arr')); // 将获取到的数组 转换为 剩余参数
+
+        // map.delete 删除map里某一个元素
+        map.delete('name');
+        // 清空 map 里面的元素
+        // map.clear();
+
+        // map.has() 查找某个元素，有则返回true，没有则false
+        console.log(map.has('age'));
+        console.log(map);
+    </script>
+</body>
+</html>

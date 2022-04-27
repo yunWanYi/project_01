@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 1.Promise 新建后就会立即执行
+        /* let promise = new Promise((resolve, reject) => {
+            console.log('Hello Promise!');
+            setTimeout(() => { 
+                resolve('程序执行完成！')       // 有没有定时器，这条异步程序无论如何都会慢于 同步任务
+            }, 2000); 
+            console.log(11);
+        });
+
+        promise.then((data)=>{
+            console.log(data);
+        }) */
+
+        // 2.一个promise对象 会改变 另一个promise对象的状态
+        // 2.1 p1 在三秒后 变成失败状态
+        const p1 = new Promise(function(resolve, reject){
+            // 3秒后变成失败的状态
+            setTimeout(() => {
+                reject(new Error('fail'));
+            }, 3000);
+        })
+        
+        const p2 = new Promise(function(resolve, reject) {
+            setTimeout(() => {
+                //因为 p2 接受的是一个p1 Promise对象，p1的状态是 失败的，p2 成功接收一个 p1的失败状态，那么p2的 状态也会从 成功状态 转换成 失败状态
+                resolve(p1);
+            }, 1000);
+        })
+        
+        // p2 的状态不受自己控制了，p1的状态 会影响 p2的状态
+        p2.then(res => {
+            console.log('成功的状态');
+            console.log(res);
+        }).catch(error => {
+            console.log('失败的状态');
+            console.log(error);
+        })
+
+    </script>
+</body>
+</html>
